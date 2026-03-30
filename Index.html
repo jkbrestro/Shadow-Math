@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadow Math - Owner Panel</title>
+    <style>
+        body { font-family: sans-serif; background: #1a1a1a; color: white; text-align: center; padding: 20px; }
+        .card { background: #2d2d2d; padding: 20px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        select, button { padding: 12px; margin: 10px; border-radius: 8px; border: none; font-size: 16px; }
+        
+        /* The Scrollable Number Picker */
+        .scroll-picker {
+            height: 150px; overflow-y: scroll;
+            background: #444; border-radius: 10px;
+            width: 100px; margin: 10px auto;
+            border: 2px solid #ff9800;
+        }
+        .scroll-picker div { padding: 10px; cursor: pointer; border-bottom: 1px solid #555; }
+        .scroll-picker div:hover { background: #ff9800; color: black; }
+        .selected-num { font-size: 24px; color: #ff9800; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>Shadow Math: Owner Control</h2>
+        
+        <p>1. Select Language</p>
+        <select id="lang">
+            <option value="en">English</option>
+            <option value="hi">Hindi (हिंदी)</option>
+            <option value="bn">Bengali (বাংলা)</option>
+        </select>
+
+        <p>2. Number of Questions (Scroll to pick)</p>
+        <div class="selected-num" id="displayNum">10</div>
+        <div class="scroll-picker" id="numPicker">
+            </div>
+
+        <p>3. Operation Type</p>
+        <select id="opType">
+            <option value="add">Addition (+)</option>
+            <option value="sub">Subtraction (-)</option>
+            <option value="multi">Multiplication (×)</option>
+            <option value="div">Division (÷)</option>
+        </select>
+
+        <button onclick="assignTask()">Assign to Student</button>
+    </div>
+
+    <script>
+        // Generate numbers 1 to 100 for the scroll picker
+        const picker = document.getElementById('numPicker');
+        const display = document.getElementById('displayNum');
+        
+        for (let i = 1; i <= 100; i++) {
+            let div = document.createElement('div');
+            div.innerText = i;
+            div.onclick = () => { display.innerText = i; };
+            picker.appendChild(div);
+        }
+
+        function assignTask() {
+            alert("Task Assigned! Number of questions: " + display.innerText);
+            // This is where we will add the Firebase 'set' code later
+        }
+    </script>
+</body>
+</html>
